@@ -117,7 +117,15 @@ const CartForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       {cartCount > 0 ? (
         <div>
-          <ul sx={{ my: 4, listStyle: "none", p: 0, mx: 0 }}>
+          <ul
+            sx={{
+              mt: 3,
+              mb: [4, null, 5, null, null],
+              listStyle: "none",
+              p: 0,
+              mx: 0,
+            }}
+          >
             {Object.values(cartDetails)
               .filter((product) => product.shipping !== true)
               .map((product) => (

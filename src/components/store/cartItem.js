@@ -38,6 +38,7 @@ const CartItem = ({ product, register, control, clearErrors }) => {
       sx={{
         mb: 2,
         display: "flex",
+        gap: 3,
         width: "100%",
         alignItems: "center",
         ":last-of-type": { mb: 0, border: "none" },
@@ -48,17 +49,14 @@ const CartItem = ({ product, register, control, clearErrors }) => {
     >
       <div
         sx={{
-          borderRadius: "4px",
-          my: 3,
-          height: "60px",
-          width: "60px",
-          mr: 2,
+          height: "80px",
+          width: "80px",
         }}
       >
         <GatsbyImage
           image={product.image}
           alt={product.name}
-          sx={{ height: "60px", borderRadius: "4px" }}
+          sx={{ height: "80px", width: "80px", borderRadius: "4px" }}
         />
       </div>
       <div sx={{ flex: 1 }}>
@@ -113,26 +111,23 @@ const CartItem = ({ product, register, control, clearErrors }) => {
             Please select a valid quantity
           </Themed.p>
         )}
-      </div>
-      <div sx={{ justifySelf: "flex-end" }}>
         <Button
           sx={{
+            display: "block",
             color: "text",
+            textDecoration: "underline",
+            p: 0,
             bg: "transparent",
-            borderWidth: "1px",
-            borderStyle: "solid",
-            borderColor: "textGray",
+            border: "none",
             fontSize: [0, null, 1, null, null],
             fontWeight: "normal",
-            display: "flex",
-            alignItems: "center",
             ":hover, :focus, :active": {
-              bg: "muted",
+              bg: "transparent",
+              color: "text",
             },
           }}
           onClick={handleClearItem}
         >
-          <FiX sx={{ mr: 1 }} />
           Remove item
         </Button>
       </div>
