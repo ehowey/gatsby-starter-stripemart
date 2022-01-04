@@ -45,8 +45,9 @@ To use this starter you will need the [Gatsby CLI](https://www.gatsbyjs.com/docs
 7. Restart `gatsby develop` and you should now see your products on the homepage. Congratulations! But you will notice that the stock just says "Checking stock..." - this is because the stock is dynamically checked every time the page loads. Let's pull in the stock.
 8. Stop your development server and run `netlify dev` this will start the Netlify development server and then start Gatsby allowing the serverless functions to run as needed. You should now see the stock updated to say "1 available". If you don't specify a stock number it defaults to 1.
 9. Now you need to setup the Stripe webhook to fire when a purchase has been successful(`checkout.session.completed`). The Stripe CLI lets you setup a test webhook listener with the command `stripe listen --forward-to localhost:8888/.netlify/functions/handle-purchase`. After running this command it will tell you what your webhook secret is, something like `whsec_...`. Add this to the `.env` files. Now when there is a successful purchase this serverless function will update the stock on the Stripe product.
+10. Stripe has a number of different outgoing webhook options, you can set it to rebuild your site via a webhook to Netlify(or other hosts) whenever a product is added, updated or deleted.
 
-🎉🎉Congrats! You now have a basic e-commerce store up and running use the latest and greatest in Jamstack tech!
+🎉🎉Congrats! You now have a basic e-commerce store up and running use the latest and greatest in Jamstack tech! Deploy that greatness!
 
 ## Stock and shipping via Stripe product metadata
 
