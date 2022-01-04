@@ -33,6 +33,7 @@ I chose this tech stack because it is one I know really well, and can move quick
 - Theme-UI (styling)
 - MDX/Mardown (authoring)
 - React-Hook-Form (form validation)
+- Reach-UI for a11y cart modal
 - Framer Motion (animations)
 
 ## 🚀 Getting started
@@ -67,4 +68,5 @@ When the stock is below 1, the product is marked as inactive and not available f
 ## Roadmap
 
 - Complete transition to typescript. I have made most of the important files and functions typescript however want to finish transitioning the entire repo.
+- Any and all a11y improvements!
 - Add support for Gatsby Cloud. I was hoping to do this with Gatsby functions however they do not play nice with Stripe currently and so went back to tried-and-true Netlify functions.
