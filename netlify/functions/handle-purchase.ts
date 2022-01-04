@@ -9,14 +9,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 const handleStockUpdate = async (item): Promise<void> => {
   const productId = item.price.product.id
   const retrievedProduct = await stripe.products.retrieve(productId)
-  const stockAsInt = parseInt(retrievedProduct.metadata.stock) - 1
-  const updatedStock = stockAsInt >= 1 ? stockAsInt : 0
-  const isProductActive = stockAsInt >= 1
-  const currentStockAsString = updatedStock.toString()
-  const updatedProduct = await stripe.products.update(productId, {
-    metadata: { stock: currentStockAsString },
-    active: isProductActive,
-  })
+  if (retrievedProduct.metadata.shipping !== "true") {
+    const stockAsInt = parseInt(retrievedProduct.metadata.stock) - 1
+    const updatedStock = stockAsInt >= 1 ? stockAsInt : 0
+    const isProductActive = stockAsInt >= 1
+    const currentStockAsString = updatedStock.toString()
+    const updatedProduct = await stripe.products.update(productId, {
+      metadata: { stock: currentStockAsString },
+      active: isProductActive,
+    })
+  }
 }
 
 const handler: Handler = async ({ body, headers }) => {
