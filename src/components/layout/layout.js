@@ -17,8 +17,8 @@ const SiteLayout = ({ children }) => {
         mode="payment"
         cartMode="client-only"
         stripe={process.env.GATSBY_STRIPE_PUBLIC_KEY}
-        successUrl="https://www.yoursite.com/thank-you"
-        cancelUrl="https://www.yoursite.com"
+        successUrl="https://www.erichowey.dev"
+        cancelUrl="https://twitter.com/erchwy"
         currency="CAD"
         allowedCountries={["CA"]}
         billingAddressCollection={true}
