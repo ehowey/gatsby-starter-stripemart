@@ -10,8 +10,8 @@ The three main features are:
 
 - 🛒 Shopping cart state management and checkout flow with Use-Shopping-Cart
 - 🔒 Secure payments and cart validation via Stripe
-- 📦 Optional and basic inventory management Stripe metadata and Netlify serverless functions
-- 🚚 Optional and basic support for shipping options using Stripe metadata
+- 📦 Optional and basic inventory management via Stripe metadata and Netlify serverless functions
+- 🚚 Optional and basic support for shipping options via Stripe metadata
 
 The benefits of using this set of technologies is that there are no ongoing monthly costs - you only pay the [Stripe fees](https://stripe.com/pricing) when you actually sell something. This works well if you have a seasonal business or periods inactivity.
 
@@ -71,6 +71,12 @@ When the stock is below 1, the product is marked as inactive and not available f
 The main cart validation is handled on the backend by Stripe. All payments are handled securely by Stripe. If the product price passed from the frontend to Stripe and the price listed in the backend do not match then the transaction will not be approved.
 
 I have also included some basic validation on the frontend, e.g. if you select a stock of "-5" if will show an error. It also checks the stock number against the quantity selected, try selecting a quantity above the current listed stock and you will also see an error.
+
+## Styling with Theme-UI
+
+[Theme-UI](https://theme-ui.com/) is a css-in-js library with a constraints based design system. You can find the main theme file in `src/styles/theme.js`. Try changing around some of the colors and you will see how quickly you can customize the look and feel of the site.
+
+Theme-UI is based on [Emotion](https://emotion.sh/) and is very similar to Chakra-UI if you are familiar with that library.
 
 ## Roadmap
 
