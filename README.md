@@ -8,7 +8,8 @@ This is a _basic_ and _minimalist_ e-commerce storefront built with [Gatsby](htt
 
 The three main features are:
 
-- 🛒 Shopping cart state management and checkout flow with Stripe and Use-Shopping-Cart
+- 🛒 Shopping cart state management and checkout flow with Use-Shopping-Cart
+- 🔒 Secure payments and cart validation via Stripe
 - 📦 Optional and basic inventory management Stripe metadata and Netlify serverless functions
 - 🚚 Optional and basic support for shipping options using Stripe metadata
 
@@ -64,6 +65,12 @@ For example if you were creating a shipping product you might call it "Standard 
 Try updating some of your products with a `stock` number in the metadata, and try creating some shipping options as well by setting `shipping` to true. You will notice that the cart now includes the shipping options you created in it.
 
 When the stock is below 1, the product is marked as inactive and not available for purchase anymore. On the frontend it will show as a "sold out" until the site rebuilds and then it will no longer be shown.
+
+## Cart validation and security
+
+The main cart validation is handled on the backend by Stripe. All payments are handled securely by Stripe. If the product price passed from the frontend to Stripe and the price listed in the backend do not match then the transaction will not be approved.
+
+I have also included some basic validation on the frontend, e.g. if you select a stock of "-5" if will show an error. It also checks the stock number against the quantity selected, try selecting a quantity above the current listed stock and you will also see an error.
 
 ## Roadmap
 
