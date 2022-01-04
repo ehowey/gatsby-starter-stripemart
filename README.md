@@ -15,6 +15,10 @@ The three main features are:
 
 The benefits of using this set of technologies is that there are no ongoing monthly costs - you only pay the [Stripe fees](https://stripe.com/pricing) when you actually sell something. This works well if you have a seasonal business or periods inactivity.
 
+## Demo
+
+[https://gatsby-starter-stripemart.netlify.app/](https://gatsby-starter-stripemart.netlify.app/)
+
 ## ⚠️ Heads up!
 
 A few words of caution.
