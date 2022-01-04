@@ -75,7 +75,7 @@ const CartForm = () => {
     setClickedCheckout(true)
     setTimeout(() => {
       setClickedCheckout(false)
-      handleClearCart()
+      clearCart()
       handleCloseCart()
     }, 6000)
     redirectToCheckout()
