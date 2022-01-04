@@ -2,7 +2,6 @@
 import { jsx, Themed, Button } from "theme-ui"
 import { useShoppingCart } from "use-shopping-cart"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { FiX } from "react-icons/fi"
 import { useWatch, useFormState } from "react-hook-form"
 import { useEffect } from "react"
 
