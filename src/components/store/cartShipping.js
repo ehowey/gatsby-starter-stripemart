@@ -25,13 +25,14 @@ const CartShipping = ({ register }) => {
       {shippingOptions.map((shipping) => (
         <label
           key={shipping.name}
-          htmlFor="local"
+          htmlFor={slugify(shipping.name)}
           sx={{
             display: "grid",
             gridTemplateColumns: "1em auto",
             gap: 2,
             fontSize: 1,
             mb: 2,
+            cursor: "pointer",
             ":last-of-type": {
               mb: 0,
             },
@@ -51,6 +52,7 @@ const CartShipping = ({ register }) => {
               transform: "translateY(2px)",
               display: "grid",
               placeContent: "center",
+              cursor: "pointer",
               ":before": {
                 content: "''",
                 width: "8px",

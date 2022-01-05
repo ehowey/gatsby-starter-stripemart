@@ -33,7 +33,7 @@ const CartModal = () => {
           <motion.div
             initial={{ opacity: 0.7, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
+            exit={{ opacity: 0, y: 200, scale: 0.9 }}
           >
             <DialogContent
               aria-label="Cart"
