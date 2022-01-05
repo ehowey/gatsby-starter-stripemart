@@ -19,8 +19,8 @@ const SiteLayout = ({ children }) => {
         stripe={process.env.GATSBY_STRIPE_PUBLIC_KEY}
         successUrl="https://www.erichowey.dev"
         cancelUrl="https://twitter.com/erchwy"
-        currency="CAD"
-        allowedCountries={["CA"]}
+        currency="USD"
+        allowedCountries={["CA", "US", "GB"]}
         billingAddressCollection={true}
       >
         <SkipNavLink />
