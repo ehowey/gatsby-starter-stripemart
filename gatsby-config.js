@@ -12,7 +12,7 @@ module.exports = {
     description: `A minimalist e-commerce starter using Gatsby, Stripe, Use-Shopping-Cart and Netlify.`,
     keywords: [`gatsby`, `stripe`, `use-shopping-cart`, `e-commerce`, `store`],
     author: `Eric Howey`,
-    siteUrl: `https://www.mysite.com`, //Change to you site address, required for sitemap.xml and robots.txt file among other things
+    siteUrl: `https://gatsby-starter-stripemart.netlify.app/`, //Change to you site address, required for sitemap.xml and robots.txt file among other things
     twitterUsername: `@your_username`,
     menuLinks: [
       {
