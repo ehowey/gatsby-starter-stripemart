@@ -10,7 +10,7 @@ export const useStripeShipping = (): Array<Shipping> => {
             type: { eq: "one_time" }
             active: { eq: true }
             product: {
-              metadata: { shipping: { eq: "true" } }
+              metadata: { shippingOption: { eq: "true" } }
               active: { eq: true }
             }
           }
@@ -40,7 +40,8 @@ export const useStripeShipping = (): Array<Shipping> => {
     price_id: node.id,
     price: node.unit_amount,
     currency: node.currency,
-    shipping: true,
+    shippingOption: true,
+    localOnly: false,
   }))
 
   const sortedShipping = shipping.sort((a, b) => {

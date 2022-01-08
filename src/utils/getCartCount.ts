@@ -3,7 +3,7 @@ import { CartDetails } from "use-shopping-cart"
 
 export const getCartCount = (cartDetails: CartDetails): number => {
   const cartFiltered: Array<any> = Object.values(cartDetails).filter(
-    (product) => product.shipping !== true
+    (product) => product.shippingOption !== true
   )
 
   const cartCount: number = cartFiltered.reduce(

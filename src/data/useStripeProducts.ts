@@ -9,7 +9,7 @@ export const useStripeProducts = (): Array<Product> => {
             type: { eq: "one_time" }
             active: { eq: true }
             product: {
-              metadata: { shipping: { ne: "true" } }
+              metadata: { shippingOption: { ne: "true" } }
               active: { eq: true }
             }
           }
@@ -26,6 +26,7 @@ export const useStripeProducts = (): Array<Product> => {
               description
               metadata {
                 stock
+                localOnly
               }
               localFiles {
                 childImageSharp {
@@ -63,6 +64,8 @@ export const useStripeProducts = (): Array<Product> => {
       ? node.product?.localFiles[0]?.childImageSharp?.gatsbyImageData
       : missingImage
 
+    const localOnlyValue = node.product?.metadata.localOnly === "true"
+
     // Check to make sure there is a description as well and provide a fallback
     const hasDescription = node.product.description != null
     const productDescription = hasDescription
@@ -77,7 +80,8 @@ export const useStripeProducts = (): Array<Product> => {
       image: productImage,
       currency: node.currency,
       stock: parseInt(node.product.metadata.stock),
-      shipping: false,
+      shippingOption: false,
+      localOnly: localOnlyValue,
     }
     return productFormatted
   })

@@ -6,7 +6,8 @@ export interface Product {
   image: any
   currency: string
   stock: number
-  shipping: boolean
+  shippingOption: boolean
+  localOnly: boolean
 }
 
 export interface Shipping {
@@ -15,7 +16,8 @@ export interface Shipping {
   price_id: string
   price: number
   currency: string
-  shipping: boolean
+  shippingOption: boolean
+  localOnly: boolean
 }
 
 export interface SiteMetaData {

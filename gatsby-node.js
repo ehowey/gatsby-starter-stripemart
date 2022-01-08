@@ -16,7 +16,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   })
 
   createFieldExtension({
-    name: `defaultShipping`,
+    name: `defaultFalse`,
     extend() {
       return {
         resolve(source, args, context, info) {
@@ -38,7 +38,8 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     }
     type ProductMetadata {
       stock: String @defaultStock
-      shipping: String @defaultShipping
+      shippingOption: String @defaultFalse
+      localOnly:  String @defaultFalse
     }
   `
 

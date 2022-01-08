@@ -30,7 +30,7 @@ const CartForm = () => {
 
   // Check if they already have a shipping option
   const selectedShipping = Object.values(cartDetails).filter(
-    (product) => product.shipping === true
+    (product) => product.shippingOption === true
   )
 
   // Get the initial shipping id. If there is one in the cart use that.
@@ -97,7 +97,7 @@ const CartForm = () => {
         (shipping) => shipping.price_id === shippingId
       )
       const shippingInCart = Object.values(cartDetails).filter(
-        (product) => product.shipping === true
+        (product) => product.shippingOption === true
       )
 
       // If there is no shipping just add it
@@ -127,7 +127,7 @@ const CartForm = () => {
             }}
           >
             {Object.values(cartDetails)
-              .filter((product) => product.shipping !== true)
+              .filter((product) => product.shippingOption !== true)
               .map((product) => (
                 <CartItem
                   key={product.id}
