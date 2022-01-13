@@ -25,6 +25,10 @@ export const useStripeShipping = (): Array<Shipping> => {
               id
               name
               description
+              metadata {
+                shippingLocal
+                shippingOption
+              }
             }
           }
         }
@@ -34,15 +38,21 @@ export const useStripeShipping = (): Array<Shipping> => {
 
   const rawShipping = data.allStripePrice.nodes
 
-  const shipping = rawShipping.map((node) => ({
-    name: node.product.name,
-    description: node.product.description,
-    price_id: node.id,
-    price: node.unit_amount,
-    currency: node.currency,
-    shippingOption: true,
-    localOnly: false,
-  }))
+  const shipping = rawShipping.map((node) => {
+    const shippingLocalValue = node.product?.metadata.shippingLocal === "true"
+
+    const formattedShipping = {
+      name: node.product.name,
+      description: node.product.description,
+      price_id: node.id,
+      price: node.unit_amount,
+      currency: node.currency,
+      shippingOption: true,
+      shippingLocal: shippingLocalValue,
+      localOnly: false,
+    }
+    return formattedShipping
+  })
 
   const sortedShipping = shipping.sort((a, b) => {
     return a.price - b.price

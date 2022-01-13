@@ -50,6 +50,7 @@ const CartItem = ({ product, register, control, clearErrors }) => {
         sx={{
           height: "80px",
           width: "80px",
+          my: 3,
         }}
       >
         <GatsbyImage

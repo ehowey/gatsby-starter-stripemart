@@ -63,6 +63,7 @@ const theme = {
     secondary: baseColors.red[2], // Used for navigation link coloring
     muted: baseColors.gray[2], // Light gray used as a background in some places
     error: baseColors.red[6], // Color for errors
+    disabled: baseColors.gray[4],
     header: {
       background: baseColors.gray[1],
       backgroundOpen: baseColors.cyan[2],
