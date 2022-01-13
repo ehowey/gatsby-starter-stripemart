@@ -75,7 +75,7 @@ const CartForm = () => {
   // Clear the cart
   const handleClearCart = () => {
     clearCart()
-    reset()
+    reset({ shipping: shippingOptions[0].price_id })
   }
 
   // Handle clicking the checkout button, using a timeout to reset it after 5 seconds
