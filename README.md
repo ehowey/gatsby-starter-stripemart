@@ -56,19 +56,19 @@ To use this starter properly you will need the [Gatsby CLI](https://www.gatsbyjs
 9. Now you need to setup the Stripe webhook to fire when a purchase has been successful(`checkout.session.completed`). The Stripe CLI lets you setup a test webhook listener with the command `stripe listen --forward-to localhost:8888/.netlify/functions/handle-purchase`. After running this command it will tell you what your webhook secret is, something like `whsec_...`. Add this to the `.env` files. Now when there is a successful purchase this serverless function will update the stock on the Stripe product.
 10. Stripe has a number of different outgoing webhook options, you can set it to rebuild your site via a webhook to Netlify(or other hosts) whenever a product is added, updated or deleted.
 
-🎉🎉Congrats! You now have a basic e-commerce store up and running use the latest and greatest in Jamstack tech! Deploy that greatness!
+🎉🎉Congrats! You now have a basic e-commerce store up and running using the latest and greatest in Jamstack tech! Deploy that greatness!
 
-## Stock and shipping via Stripe product metadata
+## Using Stripe product metadata for stock and shipping
 
 _Note if there are no shipping options provided via Stripe the cart will not display any shipping options. You can skip shipping entirely if it does not apply to your business._
 
-The only special thing to know about the creation of Stripe products is that you can add two different kinds of metadata that will be recognized by the Gatsby frontend. These are `stock` and `shipping`. All Stripe metadata is stored as a string, but stock should be a raw number and shipping is a boolean.
+There are 4 different product metadata values that are recognized and used by this starter. All values are optional. Stock defaults to 1 if not included.
 
-For example if you were creating a shipping product you might call it "Standard shipping", stock can be skipped or ignored. It won't be changed. But you do need to set a metadata called `shipping` with the value of `true`.
+- `shippingOption`: Boolean. Defaults to false. Determines whether a product in your Stripe dashboard is actually a shipping option. For example if you created a product called "Standard shipping" and set the price as $9.99 then you would also need to set `shippingOption: "true"`. Note that all metadata values are strings, and are converted by this starter to booleans during the data sourcing process.
 
-Try updating some of your products with a `stock` number in the metadata, and try creating some shipping options as well by setting `shipping` to true. You will notice that the cart now includes the shipping options you created in it.
+- `stock`: Integer. Defaults to 1. Allows you to set a number of items in stock or inventory. There are soft safeguards on the frontend against the value listed in stock and the quantity selected to purchase disabling the Checkout button if someone attempts to purchase more items than are in stock at the time. Stock is ignored for shipping options. When the stock is below 1, the product is marked as inactive and not available for purchase anymore. On the frontend it will show as a "sold out" until the site rebuilds and then it will no longer be shown.
 
-When the stock is below 1, the product is marked as inactive and not available for purchase anymore. On the frontend it will show as a "sold out" until the site rebuilds and then it will no longer be shown.
+- `localOnly` and `shippingLocal`: Boolean. Both default to false. Used in combination these allow you to specify products that cannot be shipped and must be picked up or delivered locally. Set `localOnly: "true"` on the product that can only be shipped locally. Set `shippingLocal: "true"` and `shippingOption: "true"` on at least one shipping option to specify a shipping option that is local.
 
 ## Cart validation and security
 
