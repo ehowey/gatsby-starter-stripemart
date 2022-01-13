@@ -40,6 +40,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       stock: String @defaultStock
       shippingOption: String @defaultFalse
       localOnly:  String @defaultFalse
+      shippingLocal: String @defaultFalse
     }
   `
 

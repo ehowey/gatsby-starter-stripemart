@@ -85,5 +85,6 @@ Theme-UI is based on [Emotion](https://emotion.sh/) and is very similar to Chakr
 ## Roadmap
 
 - Complete transition to typescript. I have made most of the important files and functions typescript however want to finish transitioning the entire repo.
+- Add support for an alert banner than can easily be toggled on/off
 - Any and all a11y improvements!
 - Add support for Gatsby Cloud. I was hoping to do this with Gatsby functions however they do not play nice with Stripe currently and so went back to tried-and-true Netlify functions.

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Button } from "theme-ui"
 import { FiShoppingCart } from "react-icons/fi"
-import { useShoppingCart } from "use-shopping-cart"
+import { useShoppingCart } from "use-shopping-cart/react"
 import { getCartCount } from "../../../utils/getCartCount"
 
 const Cart = () => {

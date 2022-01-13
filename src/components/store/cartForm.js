@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Themed, Button } from "theme-ui"
-import { useShoppingCart } from "use-shopping-cart"
+import { useShoppingCart } from "use-shopping-cart/react"
 import CartItem from "./cartItem"
 import { FiLoader } from "react-icons/fi"
 import CartShipping from "./cartShipping"

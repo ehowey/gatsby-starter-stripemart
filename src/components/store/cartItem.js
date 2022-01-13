@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Themed, Button } from "theme-ui"
-import { useShoppingCart } from "use-shopping-cart"
+import { useShoppingCart } from "use-shopping-cart/react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { useWatch, useFormState } from "react-hook-form"
 import { useEffect } from "react"
@@ -61,7 +61,10 @@ const CartItem = ({ product, register, control, clearErrors }) => {
       <div sx={{ flex: 1 }}>
         <Themed.p sx={{ my: 0, fontSize: 1, lineHeight: "tight" }}>
           <span sx={{ fontWeight: "bold" }}>{product.name}</span> &mdash;{" "}
-          <span sx={{}}>{product.formattedPrice}</span>
+          <span sx={{}}>
+            {product.formattedPrice}
+            {product.localOnly && <span> (local pickup only)</span>}
+          </span>
           <br />
         </Themed.p>
         <label htmlFor={productId} sx={{ fontSize: 0, mr: 1 }}>

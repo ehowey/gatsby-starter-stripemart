@@ -2,7 +2,7 @@
 import { Themed, jsx } from "theme-ui"
 import slugify from "slugify"
 import { useStripeShipping } from "../../data/useStripeShipping"
-import { formatCurrencyString } from "use-shopping-cart"
+import { formatCurrencyString } from "use-shopping-cart/react"
 import { FiTruck } from "react-icons/fi"
 
 const CartShipping = ({ register }) => {
