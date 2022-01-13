@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Themed, Button } from "theme-ui"
-import { useShoppingCart } from "use-shopping-cart"
+import { useShoppingCart } from "use-shopping-cart/react"
 import CartItem from "./cartItem"
 import { FiLoader } from "react-icons/fi"
 import CartShipping from "./cartShipping"
@@ -22,6 +22,7 @@ const CartForm = () => {
 
   // Get the shipping options
   const shippingOptions = useStripeShipping()
+
   // Check that there are shipping options
   const hasShipping = shippingOptions.length > 0
 
@@ -32,6 +33,13 @@ const CartForm = () => {
   const selectedShipping = Object.values(cartDetails).filter(
     (product) => product.shippingOption === true
   )
+
+  // Check if there are any localOnly products
+  const hasLocalOnly = Object.values(cartDetails).some(
+    (product) => product.localOnly === true
+  )
+
+  console.log(hasLocalOnly)
 
   // Get the initial shipping id. If there is one in the cart use that.
   const selectedShippingId =
@@ -145,7 +153,9 @@ const CartForm = () => {
           fun!
         </Themed.p>
       )}
-      {hasShipping && <CartShipping register={register} />}{" "}
+      {hasShipping && (
+        <CartShipping register={register} hasLocalOnly={hasLocalOnly} />
+      )}{" "}
       <div sx={{ display: "flex", gap: 3 }}>
         <Button
           type="submit"

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Themed, Button } from "theme-ui"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { useShoppingCart, formatCurrencyString } from "use-shopping-cart"
+import { useShoppingCart, formatCurrencyString } from "use-shopping-cart/react"
 import { useEffect, useState } from "react"
 
 const ProductCard = ({ product }) => {
@@ -114,10 +114,14 @@ const ProductCard = ({ product }) => {
             value: parseInt(product.price, 10),
             currency: product.currency,
           })}
+          {product.localOnly && (
+            <span sx={{ color: "textGray" }}> &mdash; Local pickup only</span>
+          )}
         </Themed.p>
         <Themed.p sx={{ fontSize: 0, color: "textGray", mt: 0 }}>
           {stockMessage()}
         </Themed.p>
+
         <div sx={{ display: "flex", gap: 3 }}>
           <Button
             disabled={

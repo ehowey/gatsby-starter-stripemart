@@ -2,10 +2,10 @@
 import { Themed, jsx } from "theme-ui"
 import slugify from "slugify"
 import { useStripeShipping } from "../../data/useStripeShipping"
-import { formatCurrencyString } from "use-shopping-cart"
+import { formatCurrencyString } from "use-shopping-cart/react"
 import { FiTruck } from "react-icons/fi"
 
-const CartShipping = ({ register }) => {
+const CartShipping = ({ register, hasLocalOnly }) => {
   // Get the shipping options
   const shippingOptions = useStripeShipping()
 
@@ -22,10 +22,16 @@ const CartShipping = ({ register }) => {
         <FiTruck sx={{ fontSize: 2 }} />
         Shipping options
       </Themed.h2>
+      {hasLocalOnly && (
+        <Themed.p sx={{ color: "error", fontSize: 0, mt: -2 }}>
+          There is an item in your cart that requires local pickup.
+        </Themed.p>
+      )}
       {shippingOptions.map((shipping) => (
         <label
           key={shipping.name}
           htmlFor={slugify(shipping.name)}
+          disabled={hasLocalOnly && !shipping.shippingLocal}
           sx={{
             display: "grid",
             gridTemplateColumns: "1em auto",
@@ -35,6 +41,9 @@ const CartShipping = ({ register }) => {
             cursor: "pointer",
             ":last-of-type": {
               mb: 0,
+            },
+            ":disabled": {
+              color: "muted",
             },
           }}
         >
@@ -69,6 +78,9 @@ const CartShipping = ({ register }) => {
                 outline: "max(2px, 1px) solid #5E9ED6",
                 outlineOffset: "max(2px, 1px)",
               },
+              ":disabled": {
+                color: "disabled",
+              },
             }}
             {...register("shipping", {
               required: true,
@@ -76,13 +88,28 @@ const CartShipping = ({ register }) => {
             type="radio"
             name="shipping"
             value={shipping.price_id}
+            disabled={hasLocalOnly && !shipping.shippingLocal}
             id={slugify(shipping.name)}
           />
-          <div sx={{ lineHeight: "tight" }}>
+          <div
+            sx={{
+              lineHeight: "tight",
+              color:
+                hasLocalOnly && !shipping.shippingLocal ? "disabled" : "text",
+            }}
+          >
             {shipping.name} &mdash;{" "}
             {formatCurrencyString({ value: shipping.price, currency: "CAD" })}
             <br />
-            <span sx={{ fontSize: 0, color: "textGray" }}>
+            <span
+              sx={{
+                fontSize: 0,
+                color:
+                  hasLocalOnly && !shipping.shippingLocal
+                    ? "disabled"
+                    : "textGray",
+              }}
+            >
               {shipping.description}
             </span>
           </div>

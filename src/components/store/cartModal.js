@@ -2,7 +2,7 @@
 import { jsx, Themed, Button } from "theme-ui"
 import { FiX } from "react-icons/fi"
 import { DialogOverlay, DialogContent } from "@reach/dialog"
-import { useShoppingCart } from "use-shopping-cart"
+import { useShoppingCart } from "use-shopping-cart/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "gatsby"
 import "@reach/dialog/styles.css"

@@ -6,7 +6,7 @@ import Header from "./header/header"
 import Main from "./main"
 import CartModal from "../store/cartModal"
 import Footer from "./footer/footer"
-import { CartProvider } from "use-shopping-cart"
+import { CartProvider } from "use-shopping-cart/react"
 import Seo from "../shared/seo"
 
 const SiteLayout = ({ children }) => {
