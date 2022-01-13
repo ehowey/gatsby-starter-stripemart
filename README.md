@@ -85,6 +85,10 @@ Theme-UI is based on [Emotion](https://emotion.sh/) and is very similar to Chakr
 ## Roadmap
 
 - Complete transition to typescript. I have made most of the important files and functions typescript however want to finish transitioning the entire repo.
-- Add support for an alert banner than can easily be toggled on/off
+- Add support for an alert banner than can easily be toggled on/off, e.g. for sales etc.
 - Any and all a11y improvements!
 - Add support for Gatsby Cloud. I was hoping to do this with Gatsby functions however they do not play nice with Stripe currently and so went back to tried-and-true Netlify functions.
+
+## Contribution.
+
+All contribution is welcome however I have no plans to add features to this starter other than those mentioned above in the roadmap. Would love some help to improve TS and any a11y improvements!
