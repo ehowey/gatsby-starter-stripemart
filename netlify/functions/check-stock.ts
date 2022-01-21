@@ -14,7 +14,8 @@ const handler: Handler = async (event, context) => {
     const productId: string = retrievedPrice.product
     const retrievedProduct: any = await stripe.products.retrieve(productId)
     const currentStock: number = parseInt(retrievedProduct?.metadata?.stock)
-    stock = currentStock ? currentStock : 1
+    const active = retrievedProduct?.active
+    stock = active ? (currentStock ? currentStock : 1) : 0
   } catch (err) {
     return {
       statusCode: err.statusCode || 500,
