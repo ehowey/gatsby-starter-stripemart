@@ -14,6 +14,7 @@ const SiteContainer = ({ children }) => {
         "main"
         "footer"
         `,
+        overflowX: "hidden",
       }}
     >
       {children}
