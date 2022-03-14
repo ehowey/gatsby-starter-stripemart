@@ -1,5 +1,7 @@
 # 🏪 Gatsby Starter Stripemart
 
+🚧 **CAUTION** v0.1.0 is coming and will include a SANITY backend and substantial changes to this starter. Stay tuned.
+
 Like a supermarket but for Stripe.
 
 No ongoing monthly costs.
