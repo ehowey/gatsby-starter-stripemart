@@ -1,0 +1,33 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "0udr5mty",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "Stripemart"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "@sanity/color-input",
+    "@sanity/code-input",
+    "icon-picker",
+    "better-slug",
+    "media",
+    "@sanity/vision"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./structure/deskStructure.js"
+    }
+  ]
+}
