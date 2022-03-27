@@ -118,8 +118,6 @@ export interface TypeMiscData {
 }
 
 export interface TypeShipping {
-  id: string
-  hasShipping: boolean | null
   localShipping: {
     hasLocalShipping: boolean | null
     title: string | null

@@ -8,7 +8,7 @@ const previewEnabled =
 module.exports = {
   // Site config is mainly done in SANITY
   siteMetadata: {
-    siteUrl: process.env.URL, //Change to you site address, required for sitemap.xml and robots.txt file among other things
+    siteUrl: process.env.URL ?? "https://www.gatsbyjs.com", //Change to you site address, required for sitemap.xml and robots.txt file among other things
   },
   plugins: [
     {

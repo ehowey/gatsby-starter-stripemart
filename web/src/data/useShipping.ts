@@ -8,7 +8,6 @@ export const useShipping = (): TypeShipping => {
       query ShippingQuery {
         allSanityShipping(limit: 1, sort: { fields: _updatedAt, order: DESC }) {
           nodes {
-            hasShipping
             freeShipping {
               description
               freeShippingCutoff
@@ -37,8 +36,6 @@ export const useShipping = (): TypeShipping => {
   const shippingData = data.allSanityShipping.nodes[0]
 
   const formattedShippingData = {
-    id: shippingData?.id,
-    hasShipping: shippingData?.hasShipping,
     localShipping: {
       hasLocalShipping: shippingData?.localShipping?.hasLocalShipping,
       title: shippingData?.localShipping?.title,
