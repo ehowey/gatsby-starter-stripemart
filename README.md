@@ -18,22 +18,22 @@ Some nice-to-haves:
 
 - 🚚 Optional support for basic shipping calculations
 - 🎁 Optional support for add ons (e.g. wrapping paper) in the checkout flow
-- 📍 Optional support for local pickup
+- 📍 Optional support for free local pickup
 - 💸 Optional support for free shipping
 
-The benefits of using this set of technologies is that there are no ongoing monthly costs - you only pay the [Stripe fees](https://stripe.com/pricing) when you actually sell something. This works well if you have a seasonal business or periods inactivity.
+The benefits of using this set of technologies together is that there are no ongoing monthly costs - you only pay the [Stripe fees](https://stripe.com/pricing) when you actually sell something. This works well if you have a seasonal business or periods inactivity.
 
 ## Demo
 
-[https://gatsby-starter-stripemart.netlify.app/](https://gatsby-starter-stripemart.netlify.app/)
+- [https://gatsby-starter-stripemart.netlify.app/](https://gatsby-starter-stripemart.netlify.app/)
+- [https://www.westwindwool.com/](https://www.westwindwool.com/)
 
 ## ⚠️ Heads up!
 
-A few words of caution.
+A few words of caution. You should probably _not_ use this starter!
 
-- If you have an active and ongoing business please use [Shopify](https://www.shopify.com/) or [Snipcart](https://snipcart.com/). They are _great_ products and are way better for most businesses, most of the time.
+- If you have an active and ongoing business please use [Shopify](https://www.shopify.com/) or [Snipcart](https://snipcart.com/). They are _great_ products and are way better for most businesses, most of the time. They have whole teams of security and performance experts. I am on developer only.
 - This starter will never reach v1.0, it is intended as a barebones starter that you can fork and make your own! I will likely never add more significant features because there are better products for a complete e-commerce experience. You can read the [roadmap](#roadmap) below to see what is planned.
-- The getting started guide below assumes you have some familiarity with Jamstack and modern web development practices.
 
 ## 🧱 Tech stack
 
@@ -62,11 +62,39 @@ You will need a Stripe account, a SANITY account, and a Netlify account.
 
 🎉🎉Congrats! You now have a basic e-commerce store up and running using the latest and greatest in Jamstack tech! Deploy that greatness!
 
+## Store settings
+
+TO DO
+
 ## Cart validation and security
 
 The main cart validation is handled on the backend by Stripe. All payments are handled securely by Stripe. If the product price passed from the frontend to Stripe and the price listed in the backend with SANITY do not match then the transaction will not be approved. There are some other basic checks that also happen before a purchase is completed, e.g. is there enough stock, is the shipping calculated correctly, is shipping actually enabled.
 
 I have also included some basic validation on the frontend, e.g. if you select a stock of "-5" if will show an error. It also checks the stock number against the quantity selected, try selecting a quantity above the current listed stock and you will also see an error.
+
+## Shipping
+
+Shipping is optional and can be toggled off in the store settings.
+
+There are three different types of shipping available, all of them are optional. Local pickup, Standard shipping, and Free shipping.
+
+Local shipping and free shipping are pretty straightforward. Note the cutoff amount for the free shipping can be set to whatever value you want.
+
+Standard shipping is calculated using a formula. You set a shipping percentage, a minimum amount, and a maximum amount. This is then used to calculate the shipping presented to the customer, and validated again server side.
+
+So for example imagine you set the following values:
+
+- Shipping percent: 20%
+- Minimum shipping: $5.00
+- Maximum shipping: $20.00
+
+If you had a $15.00 item shipping should be calculated as the minimum value of $5.00. If the item was instead $45.00 the shipping would be calculated using the percentage as $9.00. Now if the item was $180.00 the maximum shipping amount would be charged of $20.00.
+
+This formula isn't perfect, but it isn't trying to be. This gives some flexibility in shipping charged with minimal work on your part. If you need perfectly calculated shipping amounts check out more formal e-commerce products.
+
+## Add ons
+
+TO DO
 
 ## Styling with Theme-UI
 
