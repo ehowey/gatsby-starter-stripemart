@@ -6,10 +6,7 @@ export const useShipping = (): TypeShipping => {
   const data = useStaticQuery(
     graphql`
       query ShippingQuery {
-        allSanityShipping(
-          limit: 1
-          sort: { fields: _updatedAt, order: DESC }
-        ) {
+        allSanityShipping(limit: 1, sort: { fields: _updatedAt, order: DESC }) {
           nodes {
             hasShipping
             freeShipping {
@@ -37,30 +34,42 @@ export const useShipping = (): TypeShipping => {
     `
   )
 
-  const shippingData = data.allSanityShipping.nodes[0]
+  const shippingData = data?.allSanityShipping?.nodes[0]
 
   const formattedShippingData = {
-    id: shippingData.id,
-    hasShipping: shippingData.hasShipping,
+    id: shippingData?.id,
+    hasShipping: shippingData?.hasShipping,
     localShipping: {
-      hasLocalShipping: shippingData.localShipping.hasLocalShipping,
-      title: shippingData.localShipping.title,
-      description: shippingData.localShipping.description,
+      hasLocalShipping: shippingData?.localShipping?.hasLocalShipping,
+      title: shippingData?.localShipping?.title,
+      description: shippingData?.localShipping?.description,
     },
     standardShipping: {
-      hasStandardShipping: shippingData.standardShipping.hasStandardShipping,
-      title: shippingData.standardShipping.title,
-      description: shippingData.standardShipping.description,
-      minShipping: dollarsToCents(shippingData.standardShipping.minShipping),
-      maxShipping: dollarsToCents(shippingData.standardShipping.maxShipping),
-      percentShipping: shippingData.standardShipping.percentShipping / 100,
+      hasStandardShipping: shippingData?.standardShipping?.hasStandardShipping,
+      title: shippingData?.standardShipping?.title,
+      description: shippingData?.standardShipping?.description,
+      minShipping: dollarsToCents(
+        shippingData?.standardShipping?.minShipping
+          ? shippingData?.standardShipping?.minShipping
+          : 5
+      ),
+      maxShipping: dollarsToCents(
+        shippingData?.standardShipping?.maxShipping
+          ? shippingData?.standardShipping?.maxShipping
+          : 20
+      ),
+      percentShipping: shippingData?.standardShipping?.percentShipping
+        ? shippingData?.standardShipping?.percentShipping / 100
+        : 0.15,
     },
     freeShipping: {
-      hasFreeShipping: shippingData.freeShipping.hasFreeShipping,
-      title: shippingData.freeShipping.title,
-      description: shippingData.freeShipping.description,
+      hasFreeShipping: shippingData?.freeShipping?.hasFreeShipping,
+      title: shippingData?.freeShipping?.title,
+      description: shippingData?.freeShipping?.description,
       freeShippingCutoff: dollarsToCents(
-        shippingData.freeShipping.freeShippingCutoff
+        shippingData?.freeShipping?.freeShippingCutoff
+          ? shippingData?.freeShipping?.freeShippingCutoff
+          : 99
       ),
     },
   }

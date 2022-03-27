@@ -2,6 +2,9 @@ export default {
   name: "shipping",
   title: "Shipping Option",
   type: "document",
+  initialValue: {
+    hasShipping: false,
+  },
   fields: [
     {
       title: "Display Shipping Options?",

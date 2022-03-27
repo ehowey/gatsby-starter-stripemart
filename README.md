@@ -72,6 +72,10 @@ I have also included some basic validation on the frontend, e.g. if you select a
 
 Theme-UI is based on [Emotion](https://emotion.sh/) and is very similar to Chakra-UI if you are familiar with that library.
 
+## Gotchas
+
+- CORS in SANITY
+
 ## Roadmap
 
 - Complete transition to typescript. I have made most of the important files and functions typescript however want to finish transitioning the entire repo.
