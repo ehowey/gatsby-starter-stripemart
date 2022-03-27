@@ -25,8 +25,8 @@ The benefits of using this set of technologies together is that there are no ong
 
 ## Demo
 
-- [https://gatsby-starter-stripemart.netlify.app/](https://gatsby-starter-stripemart.netlify.app/)
-- [https://www.westwindwool.com/](https://www.westwindwool.com/)
+- [https://gatsby-starter-stripemart.netlify.app/](https://gatsby-starter-stripemart.netlify.app/) - Basic demo without any extras, only uses test keys.
+- [https://www.westwindwool.com/](https://www.westwindwool.com/) - Real working e-commerce storefront (and why I built this to begin with), shows off all the shipping options and add on items in the cart.
 
 ## ⚠️ Heads up!
 
