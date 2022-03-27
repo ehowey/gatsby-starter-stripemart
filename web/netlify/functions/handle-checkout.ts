@@ -253,7 +253,7 @@ const handler: Handler = async (event) => {
     }
 
     // Deal with orders without shipping
-    if (webShipping === null) {
+    if (webShipping === null && !sanityStoreSettings?.hasShipping) {
       // Line items are the same as validated items
       const line_items = validated_items
 
@@ -261,9 +261,6 @@ const handler: Handler = async (event) => {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: sanityStoreSettings?.paymentMethodTypes,
         billing_address_collection: "auto",
-        shipping_address_collection: {
-          allowed_countries: sanityStoreSettings?.allowedCountries,
-        },
         mode: "payment",
         success_url: `${process.env.URL}/thank-you/`,
         cancel_url: process.env.URL,
