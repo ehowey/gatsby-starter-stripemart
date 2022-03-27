@@ -135,6 +135,7 @@ Theme-UI is based on [Emotion](https://emotion.sh/) and is very similar to Chakr
 - Complete transition to typescript. I have made most of the important files and functions typescript however want to finish transitioning the entire repo and fix some of the places I cheated with `:any`.
 - Better form inputs in SANITY for currencies, right now they are just number or integer inputs. It would be nice if these showed a dollar sign and proper punctuation.
 - Any and all a11y improvements!
+- Maybe some tests with Cypress, this is a bit of a stretch goal, but something I might do if there is some momentum with the project.
 - Add support for Gatsby Cloud. I was hoping to do this with Gatsby functions however they do not play nice with Stripe currently and so went back to tried-and-true Netlify functions.
 
 ## Contribution.
