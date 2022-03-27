@@ -1,12 +1,15 @@
 import { useStaticQuery, graphql } from "gatsby"
-import { TypeShipping } from "../types/types"
+import { TypeNewShipping } from "../types/types"
 import dollarsToCents from "dollars-to-cents"
 
-export const useShipping = (): TypeShipping => {
+export const useNewShipping = (): TypeNewShipping => {
   const data = useStaticQuery(
     graphql`
-      query ShippingQuery {
-        allSanityShipping(limit: 1, sort: { fields: _updatedAt, order: DESC }) {
+      query NewShippingQuery {
+        allSanityNewShipping(
+          limit: 1
+          sort: { fields: _updatedAt, order: DESC }
+        ) {
           nodes {
             hasShipping
             freeShipping {
@@ -34,7 +37,7 @@ export const useShipping = (): TypeShipping => {
     `
   )
 
-  const shippingData = data?.allSanityShipping?.nodes[0]
+  const shippingData = data.allSanityNewShipping.nodes[0]
 
   const formattedShippingData = {
     id: shippingData?.id,

@@ -6,6 +6,14 @@ export const useProducts = (): Array<TypeProduct> => {
   const data = useStaticQuery(
     graphql`
       query SanityProductQuery {
+        allSanityStoreSettings(
+          limit: 1
+          sort: { fields: _updatedAt, order: DESC }
+        ) {
+          nodes {
+            currency
+          }
+        }
         allSanityProduct(filter: { active: { eq: true } }) {
           nodes {
             _id
@@ -46,6 +54,7 @@ export const useProducts = (): Array<TypeProduct> => {
   )
 
   const rawProducts = data.allSanityProduct.nodes
+  const currency = data.allSanityStoreSettings.nodes[0].currency
 
   // Fallbacks in case values are missing from stripe, fail gracefully
   const missingImage = data.missingImage.childImageSharp.gatsbyImageData
@@ -77,7 +86,7 @@ export const useProducts = (): Array<TypeProduct> => {
         sanity_id: node._id,
         price: dollarsToCents(node.price),
         image: productImage,
-        currency: "CAD",
+        currency: currency,
         stock: node?.stock ?? 1,
         shippingOption: false,
         localOnly: node.localOnly,

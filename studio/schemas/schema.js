@@ -25,6 +25,7 @@ import shipping from "./shipping"
 import localShipping from "./objects/localShipping"
 import freeShipping from "./objects/freeShipping"
 import standardShipping from "./objects/standardShipping"
+import storeSettings from "./siteSettings/storeSettings"
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -55,5 +56,6 @@ export default createSchema({
     localShipping,
     freeShipping,
     standardShipping,
+    storeSettings,
   ]),
 })

@@ -69,7 +69,7 @@ const CartItem = ({ product, register, control, clearErrors, setValue }) => {
           sx={{ my: 0, fontSize: [1, 1, 1, 1, 1], lineHeight: "tight" }}
         >
           <span sx={{ fontWeight: "bold" }}>{product.name}</span> &mdash;{" "}
-          {product.formattedPrice}
+          {product.formattedValue}
           {product.localOnly && (
             <span sx={{ color: "textError" }}> (local pickup only)</span>
           )}

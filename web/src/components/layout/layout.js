@@ -7,19 +7,29 @@ import Main from "./main"
 import Cart from "../cart/cart"
 import Footer from "./footer/footer"
 import Seo from "../shared/seo"
+import { CartProvider } from "use-shopping-cart"
+import { useSanityMetadata } from "../../data/useSanityMetadata"
 
 const SiteLayout = ({ children }) => {
+  const { storeSettingsData } = useSanityMetadata()
+
   return (
     <SiteContainer>
       <Seo title="Store" />
-      <SkipNavLink />
-      <Header />
-      <Main>
-        <SkipNavContent />
-        {children}
-      </Main>
-      <Cart />
-      <Footer />
+      <CartProvider
+        stripe={process.env.GATSBY_STRIPE_PUBLIC_KEY}
+        cartMode="checkout-session"
+        currency={storeSettingsData?.currency}
+      >
+        <SkipNavLink />
+        <Header />
+        <Main>
+          <SkipNavContent />
+          {children}
+        </Main>
+        <Cart />
+        <Footer />
+      </CartProvider>
     </SiteContainer>
   )
 }

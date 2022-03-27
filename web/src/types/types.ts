@@ -60,6 +60,20 @@ export interface TypeProductCategory {
   count: number
 }
 
+export interface TypeShipping {
+  name: string
+  description: string
+  id: string
+  sanity_id: string
+  price_id: string
+  price: number
+  currency: string
+  shippingLocal: boolean
+  shippingOption: boolean
+  localOnly: boolean
+  type: string
+}
+
 export interface TypeAddOn {
   name: string
   id: string
@@ -91,6 +105,13 @@ export interface TypeSiteMetaData {
     displayAlertBanner: boolean
     text: any
   }
+  storeSettingsData: {
+    hasShipping: boolean
+    hasAddOns: boolean
+    currency: string
+    allowedCountries: Array<string>
+    paymentMethodTypes: Array<string>
+  }
 }
 
 export interface TypeSeo {
@@ -110,7 +131,7 @@ export interface TypeMiscData {
   }
 }
 
-export interface TypeShipping {
+export interface TypeNewShipping {
   id: string
   hasShipping: boolean | null
   localShipping: {

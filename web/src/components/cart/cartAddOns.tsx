@@ -1,12 +1,16 @@
 /** @jsx jsx */
 import { Themed, jsx } from "theme-ui"
 import { useAddOns } from "../../data/useAddOns"
+import { useSanityMetadata } from "../../data/useSanityMetadata"
+
 import { formatCurrencyString } from "use-shopping-cart"
 import { FiGift } from "react-icons/fi"
 
 const CartAddOns = ({ register }) => {
   // Get the Add ons
   const addOns = useAddOns()
+  // Get the currency
+  const { storeSettingsData } = useSanityMetadata()
 
   return (
     <div sx={{ px: [2, 3, null, null, null] }}>
@@ -84,7 +88,10 @@ const CartAddOns = ({ register }) => {
                 }}
               />
               {addOn.name} &mdash;{" "}
-              {formatCurrencyString({ value: addOn.price, currency: "CAD" })}
+              {formatCurrencyString({
+                value: addOn.price,
+                currency: storeSettingsData?.currency,
+              })}
             </label>
           </li>
         ))}

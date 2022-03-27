@@ -3,7 +3,7 @@ import { jsx, Themed, Button } from "theme-ui"
 import { navigate } from "gatsby"
 import { useShoppingCart } from "use-shopping-cart"
 import { FiLoader } from "react-icons/fi"
-import { useShipping } from "../../data/useShipping"
+import { useNewShipping } from "../../data/useNewShipping"
 import { useAddOns } from "../../data/useAddOns"
 import { useWatch, useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
@@ -29,7 +29,7 @@ const CartForm = () => {
   // CartItems as an array
   const cartArray: Array<TypeCartItem> = Object.values(cartDetails)
 
-  const shippingData = useShipping()
+  const shippingData = useNewShipping()
 
   // Get all the add ons
   const addOns = useAddOns()

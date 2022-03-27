@@ -6,6 +6,14 @@ export const useAddOns = (): Array<TypeAddOn> => {
   const data = useStaticQuery(
     graphql`
       query StripeAddOnQuery {
+        allSanityStoreSettings(
+          limit: 1
+          sort: { fields: _updatedAt, order: DESC }
+        ) {
+          nodes {
+            currency
+          }
+        }
         allSanityAddOn(filter: { active: { eq: true } }) {
           nodes {
             _id
@@ -36,6 +44,7 @@ export const useAddOns = (): Array<TypeAddOn> => {
   )
 
   const rawAddOns = data.allSanityAddOn.nodes
+  const currency = data.allSanityStoreSettings.nodes[0].currency
   const missingImage = data.missingImage.childImageSharp.gatsbyImageData
 
   const addOns = rawAddOns.map((node) => {
@@ -51,7 +60,7 @@ export const useAddOns = (): Array<TypeAddOn> => {
       sanity_id: node._id,
       price_id: node._id,
       price: dollarsToCents(node.price),
-      currency: "CAD",
+      currency: currency,
       addOn: true,
       image: productImage,
       type: "one_time",

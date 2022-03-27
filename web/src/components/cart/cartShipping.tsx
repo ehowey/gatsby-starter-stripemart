@@ -1,15 +1,19 @@
 /** @jsx jsx */
 import { Themed, jsx } from "theme-ui"
 import { useShoppingCart } from "use-shopping-cart"
-import { useShipping } from "../../data/useShipping"
+import { useNewShipping } from "../../data/useNewShipping"
+import { useSanityMetadata } from "../../data/useSanityMetadata"
 import { formatCurrencyString } from "use-shopping-cart"
 import { FiTruck, FiInfo } from "react-icons/fi"
 
 const CartShipping = ({ register, hasLocalOnly }) => {
   const { totalPrice } = useShoppingCart()
 
+  // Get the store settings for currency
+  const { storeSettingsData } = useSanityMetadata()
+
   // Get the shipping options
-  const shippingData = useShipping()
+  const shippingData = useNewShipping()
 
   const calculateShipping = () => {
     const shippingCost =
@@ -221,7 +225,7 @@ const CartShipping = ({ register, hasLocalOnly }) => {
                 {shippingData.standardShipping.title} &mdash;{" "}
                 {formatCurrencyString({
                   value: calculateShipping(),
-                  currency: "CAD",
+                  currency: storeSettingsData.currency,
                 })}
                 <br />
                 <span

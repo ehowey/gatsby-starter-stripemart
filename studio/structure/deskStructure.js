@@ -18,6 +18,7 @@ import {
   FiTrendingUp,
   FiArchive,
   FiMinusSquare,
+  FiBriefcase,
 } from "react-icons/fi"
 
 const hiddenDocTypes = (listItem) =>
@@ -51,6 +52,15 @@ export default () =>
           S.list()
             .title("Site Settings")
             .items([
+              S.listItem()
+                .title("Store settings")
+                .icon(FiBriefcase)
+                .child(
+                  S.document()
+                    .title("Store settings")
+                    .schemaType("storeSettings")
+                    .documentId("storeSettings")
+                ),
               S.listItem()
                 .title("Logos")
                 .icon(FiImage)

@@ -5,6 +5,18 @@ export const useSanityMetadata = (): TypeSiteMetaData => {
   const data = useStaticQuery(
     graphql`
       query SanityMetaData {
+        allSanityStoreSettings(
+          limit: 1
+          sort: { fields: _updatedAt, order: DESC }
+        ) {
+          nodes {
+            currency
+            hasShipping
+            hasAddOns
+            paymentMethodTypes
+            allowedCountries
+          }
+        }
         allSanityLogo(limit: 1, sort: { fields: _updatedAt, order: DESC }) {
           nodes {
             desktopLogo {
@@ -85,6 +97,9 @@ export const useSanityMetadata = (): TypeSiteMetaData => {
   // Get the Alert Banner Data
   const alertBannerData = data.allSanityAlertBanner.nodes[0]
 
+  // Get the Store settings
+  const storeSettingsData = data.allSanityStoreSettings.nodes[0]
+
   return {
     ...seoDefaults,
     seoImage,
@@ -92,5 +107,6 @@ export const useSanityMetadata = (): TypeSiteMetaData => {
     desktopLogo,
     mobileLogo,
     alertBannerData,
+    storeSettingsData,
   }
 }

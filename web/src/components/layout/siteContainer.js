@@ -17,6 +17,7 @@ const SiteContainer = ({ children }) => {
           display: "grid",
           gridTemplateColumns: "minmax(0, 1fr)",
           gridTemplateRows: "auto minmax(0, 1fr) auto",
+          backgroundImage: ["none", null, "url(/bg-pattern.svg)", null, null],
           backgroundPosition: [
             "70px -20px",
             "70px -50px",

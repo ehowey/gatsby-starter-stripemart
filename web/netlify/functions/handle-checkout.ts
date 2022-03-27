@@ -26,7 +26,7 @@ const client = sanityClient({
 })
 
 // Function to calculate shipping cost
-const calculateShipping = (items, webShipping, sanityShipping) => {
+const calculateShipping = (items, currency, webShipping, sanityShipping) => {
   // Get the data from SANITY
   const {
     maxShipping: rawMaxShipping,
@@ -48,7 +48,7 @@ const calculateShipping = (items, webShipping, sanityShipping) => {
   if (webShipping === "local-shipping") {
     const shipping_item = {
       price_data: {
-        currency: "CAD",
+        currency: currency,
         unit_amount: 0,
         product_data: {
           name: localShippingTitle,
@@ -81,7 +81,7 @@ const calculateShipping = (items, webShipping, sanityShipping) => {
     }
     const shipping_item = {
       price_data: {
-        currency: "CAD",
+        currency: currency,
         unit_amount: shippingFinal(),
         product_data: {
           name: standardShippingTitle,
@@ -103,7 +103,7 @@ const calculateShipping = (items, webShipping, sanityShipping) => {
     if (totalPrice > freeShippingCutoff) {
       const shipping_item = {
         price_data: {
-          currency: "CAD",
+          currency: currency,
           unit_amount: 0,
           product_data: {
             name: freeShippingTitle,
@@ -140,7 +140,14 @@ const handler: Handler = async (event) => {
             price,
             stock,
             "image": image.asset->url
-          }, 
+          },
+          "storeSettings": *[_type == "storeSettings"][0]
+          {
+            currency,
+            allowedCountries,
+            hasShipping,
+            paymentMethodTypes,
+          },
         "shipping": *[_type == "newShipping"][0]
           {
             "minShipping": standardShipping.minShipping, 
@@ -155,8 +162,9 @@ const handler: Handler = async (event) => {
   `
     const params = { productIds: webProductIds }
     const sanityData: any = await client.fetch(query, params)
-    const sanityProducts = sanityData.products
-    const sanityShipping = sanityData.shipping
+    const sanityProducts = sanityData?.products
+    const sanityShipping = sanityData?.shipping
+    const sanityStoreSettings = sanityData?.storeSettings
 
     // Check if any item from SANITY is out of stock since this is up to date to the second
     // Return an error if out of stock
@@ -194,7 +202,7 @@ const handler: Handler = async (event) => {
         id: product._id,
         type: "one_time",
         price: dollarsToCents(product.price),
-        currency: "CAD",
+        currency: sanityStoreSettings?.currency,
         image: product.image,
         description: product.description,
         product_data: {
@@ -213,10 +221,11 @@ const handler: Handler = async (event) => {
     )
 
     // Deal with shipping
-    if (webShipping !== null) {
+    if (webShipping !== null && sanityStoreSettings?.hasShipping) {
       // Calculate shipping
       const shipping_item = calculateShipping(
         validated_items,
+        sanityStoreSettings?.currency,
         webShipping,
         sanityShipping
       )
@@ -226,10 +235,10 @@ const handler: Handler = async (event) => {
 
       // Create the session with Stripe
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
+        payment_method_types: sanityStoreSettings?.paymentMethodTypes,
         billing_address_collection: "auto",
         shipping_address_collection: {
-          allowed_countries: ["CA"],
+          allowed_countries: sanityStoreSettings?.allowedCountries,
         },
         mode: "payment",
         success_url: `${process.env.URL}/thank-you/`,
@@ -247,12 +256,13 @@ const handler: Handler = async (event) => {
     if (webShipping === null) {
       // Line items are the same as validated items
       const line_items = validated_items
+
       // Create the session with Stripe
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
+        payment_method_types: sanityStoreSettings?.paymentMethodTypes,
         billing_address_collection: "auto",
         shipping_address_collection: {
-          allowed_countries: ["CA"],
+          allowed_countries: sanityStoreSettings?.allowedCountries,
         },
         mode: "payment",
         success_url: `${process.env.URL}/thank-you/`,
