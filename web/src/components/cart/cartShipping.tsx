@@ -35,297 +35,293 @@ const CartShipping = ({ register, hasLocalOnly }) => {
     shippingData.freeShipping.hasFreeShipping &&
     totalPrice > shippingData.freeShipping.freeShippingCutoff
 
-  // Only show the shipping options if toggled on
-  if (shippingData.hasShipping) {
-    return (
-      <div
+  return (
+    <div
+      sx={{
+        mb: "1.5rem",
+        p: [2, 3, null, null, null],
+        borderRadius: "4px",
+      }}
+    >
+      <Themed.h2
         sx={{
-          mb: "1.5rem",
-          p: [2, 3, null, null, null],
-          borderRadius: "4px",
+          fontSize: [1, 1, 1, 1, 1],
+          display: "flex",
+          alignItems: "center",
+          fontFamily: "body",
+          fontWeight: 600,
+          mt: 0,
         }}
       >
-        <Themed.h2
+        <FiTruck sx={{ fontSize: 4, mr: 2 }} />
+        Shipping options
+      </Themed.h2>
+      {hasLocalOnly && (
+        <Themed.p
           sx={{
-            fontSize: [1, 1, 1, 1, 1],
+            color: "textError",
             display: "flex",
             alignItems: "center",
-            fontFamily: "body",
-            fontWeight: 600,
-            mt: 0,
+            fontSize: [1, 1, 1, 1, 1],
+            mb: 0,
+            mt: -2,
           }}
         >
-          <FiTruck sx={{ fontSize: 4, mr: 2 }} />
-          Shipping options
-        </Themed.h2>
-        {hasLocalOnly && (
-          <Themed.p
+          <FiInfo sx={{ fontSize: 1, mr: 1 }} />
+          There is an item in your cart that requires local pickup.
+        </Themed.p>
+      )}
+      <div sx={{ mt: 3 }}>
+        {shippingData.localShipping.hasLocalShipping && (
+          <label
+            htmlFor="local-shipping"
             sx={{
-              color: "textError",
-              display: "flex",
-              alignItems: "center",
-              fontSize: [1, 1, 1, 1, 1],
-              mb: 0,
-              mt: -2,
+              display: "grid",
+              gridTemplateColumns: "1em auto",
+              gap: 2,
+              fontSize: 1,
+              mb: 2,
+              cursor: "pointer",
+              ":last-of-type": {
+                mb: 0,
+              },
+              ":disabled": {
+                color: "muted",
+              },
             }}
           >
-            <FiInfo sx={{ fontSize: 1, mr: 1 }} />
-            There is an item in your cart that requires local pickup.
-          </Themed.p>
+            <input
+              sx={{
+                appearance: "none",
+                backgroundColor: "#ffffff",
+                margin: 0,
+                font: "inherit",
+                color: "currentColor",
+                width: "18px",
+                height: "18px",
+                border: "2px solid currentColor",
+                borderRadius: "50%",
+                transform: "translateY(2px)",
+                display: "grid",
+                placeContent: "center",
+                cursor: "pointer",
+                ":before": {
+                  content: "''",
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  transform: "scale(0)",
+                  transition: "120ms transform ease-in-out",
+                  boxShadow: "inset 1em 1em currentColor",
+                },
+                ":checked::before": {
+                  transform: "scale(1)",
+                },
+                ":focus": {
+                  outline: "max(2px, 1px) solid #5E9ED6",
+                  outlineOffset: "max(2px, 1px)",
+                },
+                ":disabled": {
+                  color: "disabled",
+                },
+              }}
+              {...register("shipping", {
+                required: true,
+              })}
+              type="radio"
+              name="shipping"
+              value="local-shipping"
+              id="local-shipping"
+            />
+            <div
+              sx={{
+                lineHeight: "tight",
+                color: "text",
+              }}
+            >
+              {shippingData.localShipping.title}
+              <br />
+              <span
+                sx={{
+                  fontSize: 0,
+                  color: "textGray",
+                }}
+              >
+                {shippingData.localShipping.description}
+              </span>
+            </div>
+          </label>
         )}
-        <div sx={{ mt: 3 }}>
-          {shippingData.localShipping.hasLocalShipping && (
-            <label
-              htmlFor="local-shipping"
+        {shippingData.standardShipping.hasStandardShipping && (
+          <label
+            htmlFor="standard-shipping"
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1em auto",
+              gap: 2,
+              fontSize: 1,
+              mb: 2,
+              cursor: "pointer",
+              ":last-of-type": {
+                mb: 0,
+              },
+              ":disabled": {
+                color: "muted",
+              },
+            }}
+          >
+            <input
               sx={{
+                appearance: "none",
+                backgroundColor: "#ffffff",
+                margin: 0,
+                font: "inherit",
+                color: "currentColor",
+                width: "18px",
+                height: "18px",
+                border: "2px solid currentColor",
+                borderRadius: "50%",
+                transform: "translateY(2px)",
                 display: "grid",
-                gridTemplateColumns: "1em auto",
-                gap: 2,
-                fontSize: 1,
-                mb: 2,
+                placeContent: "center",
                 cursor: "pointer",
-                ":last-of-type": {
-                  mb: 0,
+                ":before": {
+                  content: "''",
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  transform: "scale(0)",
+                  transition: "120ms transform ease-in-out",
+                  boxShadow: "inset 1em 1em currentColor",
+                },
+                ":checked::before": {
+                  transform: "scale(1)",
+                },
+                ":focus": {
+                  outline: "max(2px, 1px) solid #5E9ED6",
+                  outlineOffset: "max(2px, 1px)",
                 },
                 ":disabled": {
-                  color: "muted",
+                  color: "disabled",
                 },
               }}
+              {...register("shipping", {
+                required: true,
+              })}
+              type="radio"
+              name="shipping"
+              value="standard-shipping"
+              disabled={hasLocalOnly}
+              id="standard-shipping"
+            />
+            <div
+              sx={{
+                lineHeight: "tight",
+                color: hasLocalOnly ? "disabled" : "text",
+              }}
             >
-              <input
+              {shippingData.standardShipping.title} &mdash;{" "}
+              {formatCurrencyString({
+                value: calculateShipping(),
+                currency: storeSettingsData.currency,
+              })}
+              <br />
+              <span
                 sx={{
-                  appearance: "none",
-                  backgroundColor: "#ffffff",
-                  margin: 0,
-                  font: "inherit",
-                  color: "currentColor",
-                  width: "18px",
-                  height: "18px",
-                  border: "2px solid currentColor",
-                  borderRadius: "50%",
-                  transform: "translateY(2px)",
-                  display: "grid",
-                  placeContent: "center",
-                  cursor: "pointer",
-                  ":before": {
-                    content: "''",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    transform: "scale(0)",
-                    transition: "120ms transform ease-in-out",
-                    boxShadow: "inset 1em 1em currentColor",
-                  },
-                  ":checked::before": {
-                    transform: "scale(1)",
-                  },
-                  ":focus": {
-                    outline: "max(2px, 1px) solid #5E9ED6",
-                    outlineOffset: "max(2px, 1px)",
-                  },
-                  ":disabled": {
-                    color: "disabled",
-                  },
-                }}
-                {...register("shipping", {
-                  required: true,
-                })}
-                type="radio"
-                name="shipping"
-                value="local-shipping"
-                id="local-shipping"
-              />
-              <div
-                sx={{
-                  lineHeight: "tight",
-                  color: "text",
+                  fontSize: 0,
+                  color: hasLocalOnly ? "disabled" : "textGray",
                 }}
               >
-                {shippingData.localShipping.title}
-                <br />
-                <span
-                  sx={{
-                    fontSize: 0,
-                    color: "textGray",
-                  }}
-                >
-                  {shippingData.localShipping.description}
-                </span>
-              </div>
-            </label>
-          )}
-          {shippingData.standardShipping.hasStandardShipping && (
-            <label
-              htmlFor="standard-shipping"
+                {shippingData.standardShipping.description}
+              </span>
+            </div>
+          </label>
+        )}
+        {shippingData.freeShipping.hasFreeShipping && (
+          <label
+            htmlFor="free-shipping"
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1em auto",
+              gap: 2,
+              fontSize: 1,
+              mb: 2,
+              cursor: "pointer",
+              ":last-of-type": {
+                mb: 0,
+              },
+              ":disabled": {
+                color: "muted",
+              },
+            }}
+          >
+            <input
               sx={{
+                appearance: "none",
+                backgroundColor: "#ffffff",
+                margin: 0,
+                font: "inherit",
+                color: "currentColor",
+                width: "18px",
+                height: "18px",
+                border: "2px solid currentColor",
+                borderRadius: "50%",
+                transform: "translateY(2px)",
                 display: "grid",
-                gridTemplateColumns: "1em auto",
-                gap: 2,
-                fontSize: 1,
-                mb: 2,
+                placeContent: "center",
                 cursor: "pointer",
-                ":last-of-type": {
-                  mb: 0,
+                ":before": {
+                  content: "''",
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  transform: "scale(0)",
+                  transition: "120ms transform ease-in-out",
+                  boxShadow: "inset 1em 1em currentColor",
+                },
+                ":checked::before": {
+                  transform: "scale(1)",
+                },
+                ":focus": {
+                  outline: "max(2px, 1px) solid #5E9ED6",
+                  outlineOffset: "max(2px, 1px)",
                 },
                 ":disabled": {
-                  color: "muted",
+                  color: "disabled",
                 },
               }}
-            >
-              <input
-                sx={{
-                  appearance: "none",
-                  backgroundColor: "#ffffff",
-                  margin: 0,
-                  font: "inherit",
-                  color: "currentColor",
-                  width: "18px",
-                  height: "18px",
-                  border: "2px solid currentColor",
-                  borderRadius: "50%",
-                  transform: "translateY(2px)",
-                  display: "grid",
-                  placeContent: "center",
-                  cursor: "pointer",
-                  ":before": {
-                    content: "''",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    transform: "scale(0)",
-                    transition: "120ms transform ease-in-out",
-                    boxShadow: "inset 1em 1em currentColor",
-                  },
-                  ":checked::before": {
-                    transform: "scale(1)",
-                  },
-                  ":focus": {
-                    outline: "max(2px, 1px) solid #5E9ED6",
-                    outlineOffset: "max(2px, 1px)",
-                  },
-                  ":disabled": {
-                    color: "disabled",
-                  },
-                }}
-                {...register("shipping", {
-                  required: true,
-                })}
-                type="radio"
-                name="shipping"
-                value="standard-shipping"
-                disabled={hasLocalOnly}
-                id="standard-shipping"
-              />
-              <div
-                sx={{
-                  lineHeight: "tight",
-                  color: hasLocalOnly ? "disabled" : "text",
-                }}
-              >
-                {shippingData.standardShipping.title} &mdash;{" "}
-                {formatCurrencyString({
-                  value: calculateShipping(),
-                  currency: storeSettingsData.currency,
-                })}
-                <br />
-                <span
-                  sx={{
-                    fontSize: 0,
-                    color: hasLocalOnly ? "disabled" : "textGray",
-                  }}
-                >
-                  {shippingData.standardShipping.description}
-                </span>
-              </div>
-            </label>
-          )}
-          {shippingData.freeShipping.hasFreeShipping && (
-            <label
-              htmlFor="free-shipping"
+              {...register("shipping", {
+                required: true,
+              })}
+              type="radio"
+              name="shipping"
+              value="free-shipping"
+              disabled={hasLocalOnly || !isFreeShipping}
+              id="free-shipping"
+            />
+            <div
               sx={{
-                display: "grid",
-                gridTemplateColumns: "1em auto",
-                gap: 2,
-                fontSize: 1,
-                mb: 2,
-                cursor: "pointer",
-                ":last-of-type": {
-                  mb: 0,
-                },
-                ":disabled": {
-                  color: "muted",
-                },
+                lineHeight: "tight",
+                color: hasLocalOnly || !isFreeShipping ? "disabled" : "text",
               }}
             >
-              <input
+              {shippingData.freeShipping.title}
+              <br />
+              <span
                 sx={{
-                  appearance: "none",
-                  backgroundColor: "#ffffff",
-                  margin: 0,
-                  font: "inherit",
-                  color: "currentColor",
-                  width: "18px",
-                  height: "18px",
-                  border: "2px solid currentColor",
-                  borderRadius: "50%",
-                  transform: "translateY(2px)",
-                  display: "grid",
-                  placeContent: "center",
-                  cursor: "pointer",
-                  ":before": {
-                    content: "''",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    transform: "scale(0)",
-                    transition: "120ms transform ease-in-out",
-                    boxShadow: "inset 1em 1em currentColor",
-                  },
-                  ":checked::before": {
-                    transform: "scale(1)",
-                  },
-                  ":focus": {
-                    outline: "max(2px, 1px) solid #5E9ED6",
-                    outlineOffset: "max(2px, 1px)",
-                  },
-                  ":disabled": {
-                    color: "disabled",
-                  },
-                }}
-                {...register("shipping", {
-                  required: true,
-                })}
-                type="radio"
-                name="shipping"
-                value="free-shipping"
-                disabled={hasLocalOnly || !isFreeShipping}
-                id="free-shipping"
-              />
-              <div
-                sx={{
-                  lineHeight: "tight",
-                  color: hasLocalOnly || !isFreeShipping ? "disabled" : "text",
+                  fontSize: 0,
+                  color:
+                    hasLocalOnly || !isFreeShipping ? "disabled" : "textGray",
                 }}
               >
-                {shippingData.freeShipping.title}
-                <br />
-                <span
-                  sx={{
-                    fontSize: 0,
-                    color:
-                      hasLocalOnly || !isFreeShipping ? "disabled" : "textGray",
-                  }}
-                >
-                  {shippingData.freeShipping.description}
-                </span>
-              </div>
-            </label>
-          )}
-        </div>
+                {shippingData.freeShipping.description}
+              </span>
+            </div>
+          </label>
+        )}
       </div>
-    )
-  }
-  return null
+    </div>
+  )
 }
 
 export default CartShipping

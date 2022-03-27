@@ -5,6 +5,7 @@ import { useShoppingCart } from "use-shopping-cart"
 import { FiLoader } from "react-icons/fi"
 import { useShipping } from "../../data/useShipping"
 import { useAddOns } from "../../data/useAddOns"
+import { useSanityMetadata } from "../../data/useSanityMetadata"
 import { useWatch, useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
 import CartAddOns from "./cartAddOns"
@@ -34,15 +35,18 @@ const CartForm = () => {
   // Get all the add ons
   const addOns = useAddOns()
 
+  // Get the store settings
+  const { storeSettingsData } = useSanityMetadata()
+
   // Check that there are shipping options
-  const hasShipping = shippingData.hasShipping
+  const hasShipping = storeSettingsData.hasShipping
 
   const hasLocalShipping = shippingData.localShipping.hasLocalShipping
 
   const hasStandardShipping = shippingData.standardShipping.hasStandardShipping
 
   // Check that there are add ons
-  const hasAddOns = addOns.length > 0
+  const hasAddOns = storeSettingsData.hasAddOns
 
   // Check if there are any localOnly products
   const hasLocalOnly = cartArray.some((product) => product.localOnly === true)

@@ -92,8 +92,8 @@ export interface TypeSiteMetaData {
     text: any
   }
   storeSettingsData: {
-    hasShipping: boolean
-    hasAddOns: boolean
+    hasShipping: boolean | null
+    hasAddOns: boolean | null
     currency: string
     allowedCountries: Array<string>
     paymentMethodTypes: Array<string>
