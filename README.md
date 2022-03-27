@@ -76,6 +76,7 @@ I assume you are somewhat familiar with Jamstack/modern frontend web development
 
 - Double check CORS origins when you deploy, you will likely need to make sure they are setup correctly
 - Don't forget to set all those `.env` variables correctly in Netlify
+- If you want to auto-publish from SANITY to Netlify you can use a webhook for this
 - Stripe webhook secrets for production are going to be different than what you are running locally when testing, make sure you update them!
 - Keep those API keys safe! Make sure you don't check those into git.
 
