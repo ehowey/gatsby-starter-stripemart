@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Themed, jsx } from "theme-ui"
 import { useShoppingCart } from "use-shopping-cart"
-import { useNewShipping } from "../../data/useNewShipping"
+import { useShipping } from "../../data/useShipping"
 import { useSanityMetadata } from "../../data/useSanityMetadata"
 import { formatCurrencyString } from "use-shopping-cart"
 import { FiTruck, FiInfo } from "react-icons/fi"
@@ -13,7 +13,7 @@ const CartShipping = ({ register, hasLocalOnly }) => {
   const { storeSettingsData } = useSanityMetadata()
 
   // Get the shipping options
-  const shippingData = useNewShipping()
+  const shippingData = useShipping()
 
   const calculateShipping = () => {
     const shippingCost =

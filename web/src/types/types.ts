@@ -60,20 +60,6 @@ export interface TypeProductCategory {
   count: number
 }
 
-export interface TypeShipping {
-  name: string
-  description: string
-  id: string
-  sanity_id: string
-  price_id: string
-  price: number
-  currency: string
-  shippingLocal: boolean
-  shippingOption: boolean
-  localOnly: boolean
-  type: string
-}
-
 export interface TypeAddOn {
   name: string
   id: string
@@ -131,7 +117,7 @@ export interface TypeMiscData {
   }
 }
 
-export interface TypeNewShipping {
+export interface TypeShipping {
   id: string
   hasShipping: boolean | null
   localShipping: {

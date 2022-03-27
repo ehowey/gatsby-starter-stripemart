@@ -148,7 +148,7 @@ const handler: Handler = async (event) => {
             hasShipping,
             paymentMethodTypes,
           },
-        "shipping": *[_type == "newShipping"][0]
+        "shipping": *[_type == "shipping"][0]
           {
             "minShipping": standardShipping.minShipping, 
             "maxShipping": standardShipping.maxShipping, 

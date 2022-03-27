@@ -2,7 +2,6 @@
 import { jsx, Themed } from "theme-ui"
 import { useSanityMetadata } from "../../../data/useSanityMetadata"
 import { Link } from "gatsby"
-import { FiInstagram } from "react-icons/fi"
 
 const SiteFooter = () => {
   const { title } = useSanityMetadata()
