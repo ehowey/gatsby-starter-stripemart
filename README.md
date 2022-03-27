@@ -72,6 +72,21 @@ I assume you are somewhat familiar with Jamstack/modern frontend web development
 
 🎉🎉Congrats! You now have a basic e-commerce store up and running using the latest and greatest in Jamstack tech! Deploy that greatness!
 
+## Deployment
+
+- Double check CORS origins when you deploy, you will likely need to make sure they are setup correctly
+- Don't forget to set all those `.env` variables correctly in Netlify
+- Stripe webhook secrets for production are going to be different than what you are running locally when testing, make sure you update them!
+- Keep those API keys safe! Make sure you don't check those into git.
+
+## Cart validation and security
+
+The main cart validation is handled on the backend by Stripe. All payments are handled securely by Stripe. If the product price passed from the frontend to Stripe and the price listed in the backend with SANITY do not match then the transaction will not be approved. There are some other basic checks that also happen before a purchase is completed, e.g. is there enough stock, is the shipping calculated correctly, is shipping actually enabled.
+
+I have also included some basic validation on the frontend, e.g. if you select a stock of "-5" if will show an error. It also checks the stock number against the quantity selected, try selecting a quantity above the current listed stock and you will also see an error.
+
+Most of this happens in `web/netlify/functions/handle-checkout.ts` and `web/netlify/functions/handle-purchase.ts` which are Netlify serverless functions.
+
 ## Store settings
 
 The following store settings area available in Site Settings > Store Settings. These allow for configuration of some Stripe settings. If you want to manually update the Stripe checkout settings see the file in `web/netlify/functions/handle-checkout.ts`.
@@ -81,14 +96,6 @@ The following store settings area available in Site Settings > Store Settings. T
 - Support add ons: Boolean to toggle the add on section in the checkout
 - Support shipping: Boolean to toggle shipping in the checkout
 - Allowed Countries: An array of strings for the allowed countries for shipping. For example 'US' or 'GB'. See https://stripe.com/docs/payments/checkout/shipping for details.
-
-## Cart validation and security
-
-The main cart validation is handled on the backend by Stripe. All payments are handled securely by Stripe. If the product price passed from the frontend to Stripe and the price listed in the backend with SANITY do not match then the transaction will not be approved. There are some other basic checks that also happen before a purchase is completed, e.g. is there enough stock, is the shipping calculated correctly, is shipping actually enabled.
-
-I have also included some basic validation on the frontend, e.g. if you select a stock of "-5" if will show an error. It also checks the stock number against the quantity selected, try selecting a quantity above the current listed stock and you will also see an error.
-
-Most of this happens in `web/netlify/functions/handle-checkout.ts` and `web/netlify/functions/handle-purchase.ts` which are Netlify serverless functions.
 
 ## Shipping
 
@@ -121,13 +128,6 @@ This allows you to add an item that is available for purchase in the checkout ca
 [Theme-UI](https://theme-ui.com/) is a css-in-js library with a constraints based design system. You can find the main theme file in `src/styles/theme.js`. Try changing around some of the colors and you will see how quickly you can customize the look and feel of the site.
 
 Theme-UI is based on [Emotion](https://emotion.sh/) and is very similar to Chakra-UI if you are familiar with that library.
-
-## Deployment
-
-- Double check CORS origins when you deploy, you will likely need to make sure they are setup correctly
-- Don't forget to set all those `.env` variables correctly in Netlify
-- Stripe webhook secrets for production are going to be different than what you are running locally when testing, make sure you update them!
-- Keep those API keys safe! Make sure you don't check those into git.
 
 ## Roadmap
 
