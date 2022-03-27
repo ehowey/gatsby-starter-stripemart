@@ -1,8 +1,8 @@
 {
-  "name": "purplefield-studio",
+  "name": "gatsby-starter-stripemart-studio",
   "private": true,
   "version": "0.0.1",
-  "description": "Sanity studio for sanity-template-gatsby-purplefield",
+  "description": "Sanity studio for gatsby-starter-stripemart",
   "main": "package.json",
   "author": "Eric Howey <ehowey@gmail.com>",
   "license": "MIT",
