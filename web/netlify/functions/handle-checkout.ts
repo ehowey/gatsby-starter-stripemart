@@ -130,7 +130,7 @@ const handler: Handler = async (event) => {
     const webProducts: Array<TypeCartItem> = Object.values(webCartItems)
 
     // Run a query against the SANITY database and get the backend data
-    const query = `*[_type == "shipping"][0]
+    const query = `
       {
         "products": *[_id in $productIds]
           {
@@ -141,7 +141,7 @@ const handler: Handler = async (event) => {
             stock,
             "image": image.asset->url
           }, 
-        "shipping": 
+        "shipping": *[_type == "newShipping"][0]
           {
             "minShipping": standardShipping.minShipping, 
             "maxShipping": standardShipping.maxShipping, 
@@ -151,7 +151,8 @@ const handler: Handler = async (event) => {
             "standardShippingTitle": standardShipping.title,
             "localShippingTitle": localShipping.title, 
         }
-      }`
+      }
+  `
     const params = { productIds: webProductIds }
     const sanityData: any = await client.fetch(query, params)
     const sanityProducts = sanityData.products
@@ -231,8 +232,8 @@ const handler: Handler = async (event) => {
           allowed_countries: ["CA"],
         },
         mode: "payment",
-        success_url: "https://gatsby-starter-stripemart.netlify.app/thank-you/",
-        cancel_url: "https://gatsby-starter-stripemart.netlify.app/",
+        success_url: "https://www.westwindwool.com/thank-you/",
+        cancel_url: "https://www.westwindwool.com",
         line_items,
       })
 
@@ -254,8 +255,8 @@ const handler: Handler = async (event) => {
           allowed_countries: ["CA"],
         },
         mode: "payment",
-        success_url: "https://gatsby-starter-stripemart.netlify.app/thank-you/",
-        cancel_url: "https://gatsby-starter-stripemart.netlify.app/",
+        success_url: "https://www.westwindwool.com/thank-you/",
+        cancel_url: "https://www.westwindwool.com",
         line_items,
       })
 
