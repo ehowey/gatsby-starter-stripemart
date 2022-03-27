@@ -8,8 +8,7 @@ const previewEnabled =
 module.exports = {
   // Site config is mainly done in SANITY
   siteMetadata: {
-    title: `Gatsby-Starter-Stripemart`,
-    siteUrl: `https://gatsby-starter-stripemart.netlify.app/`, //Change to you site address, required for sitemap.xml and robots.txt file among other things
+    siteUrl: process.env.URL, //Change to you site address, required for sitemap.xml and robots.txt file among other things
   },
   plugins: [
     {
