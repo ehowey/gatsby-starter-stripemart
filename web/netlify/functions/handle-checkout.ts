@@ -232,8 +232,8 @@ const handler: Handler = async (event) => {
           allowed_countries: ["CA"],
         },
         mode: "payment",
-        success_url: "https://www.westwindwool.com/thank-you/",
-        cancel_url: "https://www.westwindwool.com",
+        success_url: `${process.env.URL}/thank-you/`,
+        cancel_url: process.env.URL,
         line_items,
       })
 
@@ -255,8 +255,8 @@ const handler: Handler = async (event) => {
           allowed_countries: ["CA"],
         },
         mode: "payment",
-        success_url: "https://www.westwindwool.com/thank-you/",
-        cancel_url: "https://www.westwindwool.com",
+        success_url: `${process.env.URL}/thank-you/`,
+        cancel_url: process.env.URL,
         line_items,
       })
 
