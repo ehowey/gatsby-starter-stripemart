@@ -1,0 +1,75 @@
+{
+  "name": "gatsby-starter-stripemart",
+  "description": "A minimalist e-commerce storefront using Gatsby, SANITY, Stripe and Use-Shopping-Cart.",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Eric Howey <eric@erichowey.dev>",
+  "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@fontsource/cormorant": "^4.5.3",
+    "@mdx-js/react": "^1.6.22",
+    "@netlify/functions": "^1.0.0",
+    "@reach/dialog": "^0.16.2",
+    "@reach/skip-nav": "^0.16.0",
+    "@reach/visually-hidden": "^0.16.0",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/client": "^3.2.2",
+    "@stripe/stripe-js": "^1.25.0",
+    "dollars-to-cents": "^1.0.3",
+    "framer-motion": "^6.2.8",
+    "gatsby": "4.10.1",
+    "gatsby-plugin-catch-links": "^4.10.0",
+    "gatsby-plugin-image": "^2.10.0",
+    "gatsby-plugin-manifest": "^4.10.1",
+    "gatsby-plugin-netlify": "^4.1.0",
+    "gatsby-plugin-page-creator": "^4.10.1",
+    "gatsby-plugin-react-helmet": "^5.10.0",
+    "gatsby-plugin-robots-txt": "^1.7.0",
+    "gatsby-plugin-sharp": "^4.10.1",
+    "gatsby-plugin-sitemap": "^5.10.1",
+    "gatsby-plugin-theme-ui": "^0.13.1",
+    "gatsby-source-filesystem": "^4.10.0",
+    "gatsby-source-sanity": "^7.3.2",
+    "gatsby-transformer-sharp": "^4.10.0",
+    "prop-types": "^15.8.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.28.0",
+    "react-icons": "^4.3.1",
+    "rollup": "^2.70.1",
+    "slugify": "^1.6.5",
+    "stripe": "^8.210.0",
+    "theme-ui": "^0.13.1",
+    "use-shopping-cart": "3.1.1"
+  },
+  "devDependencies": {
+    "@types/react-helmet": "^6.1.5",
+    "prettier": "^2.6.0"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-starter",
+    "gatsby-plugin"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "clean": "gatsby clean",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "start-server-and-test start http://localhost:8000 cy:open",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ehowey/"
+  },
+  "bugs": {
+    "url": "https://github.com/ehowey/"
+  }
+}
