@@ -63,24 +63,23 @@ const StoreSortForm = ({ displayedProducts, setDisplayedProducts }) => {
 
     // Finally we can handle sorting
     if (sortOrder === "default") {
-      const sorted = finalProducts.sort((a, b) => {
-        let dateA = a._createdAt
-        let dateB = b._createdAt
-        let featuredA = a.featured
-        let featuredB = b.featured
-        if (featuredA === true) {
-          return -1
-        } else if (featuredB === true) {
-          return -1
-        } else if (dateA > dateB) {
-          return -1
-        } else if (dateA < dateB) {
-          return 1
-        }
-        return 0
-      })
+      const featured = finalProducts.filter(
+        (product) => product.featured === true
+      )
+      const sorted = finalProducts
+        .filter((product) => product.featured !== true)
+        .sort((a, b) => {
+          let dateA = a._createdAt
+          let dateB = b._createdAt
+          if (dateA > dateB) {
+            return -1
+          } else if (dateA < dateB) {
+            return 1
+          }
+          return 0
+        })
 
-      setDisplayedProducts([...sorted])
+      setDisplayedProducts([...featured, ...sorted])
     }
     if (sortOrder === "recent") {
       const sorted = finalProducts.sort((a, b) => {
