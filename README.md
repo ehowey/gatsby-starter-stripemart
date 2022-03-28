@@ -135,6 +135,7 @@ Theme-UI is based on [Emotion](https://emotion.sh/) and is very similar to Chakr
 
 - Check stock on last time on payment_intent_created. Right now stock is checked on the frontend, and checked serverside before reaching checkout, but it would be good to check it again one last time just before payment goes through.
 - Complete transition to typescript. I have made most of the important files and functions typescript however want to finish transitioning the entire repo and fix some of the places I cheated with `:any`.
+- Maybe add a search function
 - Better form inputs in SANITY for currencies, right now they are just number or integer inputs. It would be nice if these showed a dollar sign and proper punctuation.
 - Any and all a11y improvements!
 - Maybe some tests with Cypress, this is a bit of a stretch goal, but something I might do if there is some momentum with the project.
