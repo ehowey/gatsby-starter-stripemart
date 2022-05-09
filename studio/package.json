@@ -16,15 +16,15 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.29.2",
-    "@sanity/code-input": "^2.29.2",
-    "@sanity/color-input": "^2.29.2",
+    "@sanity/base": "^2.29.8",
+    "@sanity/code-input": "^2.29.8",
+    "@sanity/color-input": "^2.29.8",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.28.1",
-    "@sanity/default-layout": "^2.29.2",
-    "@sanity/default-login": "^2.29.2",
-    "@sanity/desk-tool": "^2.29.2",
-    "@sanity/vision": "^2.29.2",
+    "@sanity/core": "^2.29.5",
+    "@sanity/default-layout": "^2.29.8",
+    "@sanity/default-login": "^2.29.8",
+    "@sanity/desk-tool": "^2.29.8",
+    "@sanity/vision": "^2.29.8",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -35,7 +35,7 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.28.0",
+    "@sanity/cli": "^2.29.8",
     "prettier": "^2.4.1"
   }
 }

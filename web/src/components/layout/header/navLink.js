@@ -18,8 +18,9 @@ const NavLink = ({ navLink, setIsNavOpen }) => {
         },
       }}
     >
-      <Themed.a
-        sx={{
+      <Link
+        sx={(t) => ({
+          ...t.styles.a,
           position: "relative",
           py: 2,
           px: 2,
@@ -37,14 +38,13 @@ const NavLink = ({ navLink, setIsNavOpen }) => {
             color: "#000000",
             bg: "header.navHover",
           },
-        }}
-        as={Link}
+        })}
         activeClassName="active"
         to={`${navLink.internalLink}`}
         onClick={() => setIsNavOpen(false)}
       >
         {navLink.name}
-      </Themed.a>
+      </Link>
     </li>
   )
 }

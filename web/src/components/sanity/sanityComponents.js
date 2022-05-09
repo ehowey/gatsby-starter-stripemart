@@ -94,9 +94,9 @@ const serializers = {
     link: ({ children, mark }) => {
       if (mark?.linkType === "internal") {
         return (
-          <Themed.a as={Link} to={`${mark.internalLink}`}>
+          <Link to={`${mark.internalLink}`} sx={(t) => ({ ...t.styles.a })}>
             {children}
-          </Themed.a>
+          </Link>
         )
       }
       if (mark?.linkType === "external" && mark?.blank) {

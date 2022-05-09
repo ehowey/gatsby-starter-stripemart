@@ -98,19 +98,19 @@ const Cart = () => {
                   pb: [3, 4, null, null, null],
                 }}
               >
-                <Themed.a
-                  as={Link}
+                <Link
                   to="/terms"
                   onClick={handleCloseCart}
-                  sx={{
+                  sx={(t) => ({
+                    ...t.styles.a,
                     color: "textGray",
                     ":hover, :active, :focus": {
                       color: "textGray",
                     },
-                  }}
+                  })}
                 >
                   Terms and Conditions
-                </Themed.a>
+                </Link>
               </Themed.p>
             </DialogContent>
           </motion.div>

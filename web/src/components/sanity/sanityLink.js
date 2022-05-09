@@ -7,9 +7,9 @@ const SanitylLink = ({ children, link, ...props }) => {
 
   if (internalSanityLink) {
     return (
-      <Themed.a as={Link} to={link.internalLink} {...props}>
+      <Link sx={(t) => ({ ...t.styles.a })} to={link.internalLink} {...props}>
         {children}
-      </Themed.a>
+      </Link>
     )
   }
   if (externalSanityLink) {
