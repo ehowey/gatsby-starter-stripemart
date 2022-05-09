@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed } from "theme-ui"
+import { jsx } from "theme-ui"
 import { Link } from "gatsby"
 
 const NavLink = ({ navLink, setIsNavOpen }) => {
