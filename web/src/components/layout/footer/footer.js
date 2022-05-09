@@ -28,18 +28,18 @@ const SiteFooter = () => {
           © {new Date().getFullYear()} {title}
         </Themed.p>
         <Themed.p sx={{ m: 0, fontSize: [1, 1, 1, 1, 1] }}>
-          <Themed.a as={Link} to="/returns">
+          <Link to="/returns" sx={(t) => ({ ...t.styles.a })}>
             Returns policy
-          </Themed.a>
+          </Link>
         </Themed.p>
         <Themed.p sx={{ m: 0, fontSize: [1, 1, 1, 1, 1] }}>
-          <Themed.a as={Link} to="/terms">
+          <Link to="/terms" sx={(t) => ({ ...t.styles.a })}>
             Terms and conditions
-          </Themed.a>{" "}
+          </Link>{" "}
           &bull;{" "}
-          <Themed.a as={Link} to="/privacy">
+          <Link to="/privacy" sx={(t) => ({ ...t.styles.a })}>
             Privacy
-          </Themed.a>
+          </Link>
         </Themed.p>
       </div>
     </footer>
